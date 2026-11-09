@@ -29,6 +29,7 @@
     @media(max-width:900px){.links{display:none;position:absolute;left:0;right:0;top:82px;background:var(--paper);padding:18px 24px;flex-direction:column;align-items:stretch;gap:0}.links.open{display:flex}.links a{padding:12px 0}.menu{display:block}.nav-tools .mini{display:none}.hero::before{opacity:.18;width:100%;clip-path:none}.hero-grid,.split-title,.research-layout,.campus-display,.journey-grid,.campus-gallery{grid-template-columns:1fr}.hero-copy{padding:80px 0}.hero-panel{margin:0 0 70px;padding:20px;color:white;border-color:white}.hero-panel p{color:#f5ebed}.facts{grid-template-columns:1fr 1fr}.academic-grid,.works-grid{grid-template-columns:1fr}.head-row,.works-head{display:block}.orb{max-width:520px}.footer-grid{grid-template-columns:1fr 1fr}.campus-copy{padding:38px}.campus-art{min-height:320px}.campus-photo img{height:320px}}
     @media(max-width:560px){.wrap{width:min(100% - 28px,1180px)}.identity small{display:none}.hero h1{font-size:3.2rem}.facts{grid-template-columns:1fr}.fact{border-right:0;border-bottom:1px solid #465159}.footer-grid{grid-template-columns:1fr}.footer-bottom{display:block}.campus-tabs{overflow:auto}.campus-tabs button{padding:12px 18px}section{padding:75px 0}}
     .hero::after{content:"1994"}
+    .work-visual img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;transition:transform .4s ease}.work-card:hover .work-visual img{transform:scale(1.035)}.work-type{z-index:2}
     .hero::before{background-image:linear-gradient(145deg,rgba(54,12,20,.3),rgba(139,30,45,.58)),url('graph/business-management-classroom.jpg')}
   </style>
 </head>
@@ -46,6 +47,19 @@
   </main>
   <footer><div class="wrap"><div class="footer-grid"><div><div class="footer-brand">慈濟大學經營管理學系</div><p class="concept">以人為本，運用管理專業創造善的影響力。</p></div><div><h4>認識本系</h4><a href="#about">系所簡介</a><a href="#academics">課程特色</a><a href="#research">實務發展</a><a href="#studentworks">學生作品</a></div><div><h4>學習與招生</h4><a href="#campuses">學習場域</a><a href="#admissions">招生資訊</a><a href="https://mdm.tcu.edu.tw/" target="_blank">系所官網 ↗</a></div><div><h4>聯絡資訊</h4><p>花蓮市介仁街67號<br>電話：03-857-2677<br>分機：31682</p></div></div><div class="footer-bottom"><span>概念網站｜慈濟大學經營管理學系</span><span>單一 HTML｜Internal CSS 與 JavaScript</span></div></div></footer>
   <script>
+    const projectPhotos=[
+      {src:'graph/project-international-exchange.jpg',alt:'慈濟大學經營管理學系師生與國際學生共同參與文化交流活動'},
+      {src:'graph/project-boardgame-workshop.jpg',alt:'經營管理學系學生進行桌遊專題測試與互動學習'},
+      {src:'graph/project-cultural-fieldwork.jpg',alt:'國際學生參與地方文化走讀並觀看社區地圖展示'}
+    ];
+    document.querySelectorAll('.work-visual').forEach((visual,index)=>{
+      const badge=visual.querySelector('.work-type');
+      const photo=projectPhotos[index];
+      if(!photo)return;
+      visual.innerHTML='';
+      if(badge)visual.appendChild(badge);
+      const img=document.createElement('img');img.src=photo.src;img.alt=photo.alt;img.loading='lazy';visual.appendChild(img);
+    });
     document.querySelector('.campus-art img').src='graph/business-management-classroom.jpg';
     const campusData={
       central:{name:'智慧商店',text:'運用零售科技、數據分析與消費者觀察，練習商品管理、服務流程及智慧商務應用。',focus:'零售與數據'},
